@@ -1,14 +1,10 @@
-import jwt from 'jsonwebtoken';
-
 export const login = (req, res) => {
+  console.log('ADMIN_USER:', process.env.ADMIN_USER);
+  console.log('ADMIN_PASS:', process.env.ADMIN_PASS);
+  console.log('BODY:', req.body);
+
   const { user, password } = req.body;
 
-  // Validación básica
-  if (!user || !password) {
-    return res.status(400).json({ message: 'Faltan credenciales' });
-  }
-
-  // Comparar contra variables de entorno
   if (
     user !== process.env.ADMIN_USER ||
     password !== process.env.ADMIN_PASS
@@ -16,18 +12,5 @@ export const login = (req, res) => {
     return res.status(401).json({ message: 'Credenciales inválidas' });
   }
 
-  // Crear JWT
-  const token = jwt.sign(
-    {
-      user,
-      role: 'admin'
-    },
-    process.env.JWT_SECRET,
-    { expiresIn: '1h' }
-  );
-
-  res.json({
-    token,
-    type: 'Bearer'
-  });
+  res.json({ ok: true });
 };
