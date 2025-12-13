@@ -1,5 +1,7 @@
 import admin from "firebase-admin";
 
+// firebase config using env vars
+
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert({
