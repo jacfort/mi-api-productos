@@ -6,8 +6,8 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
 
-const VALID_USER = process.env.AUTH_USER || 'admin';
-const VALID_PASS = process.env.AUTH_PASS || 'password123';
+const VALID_USER = process.env.ADMIN_USER || 'admin';
+const VALID_PASS = process.env.ADMIN_PASS || '1234';
 
 export const authenticate = async (username, password) => {
   if (username === VALID_USER && password === VALID_PASS) {
